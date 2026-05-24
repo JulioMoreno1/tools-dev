@@ -1,0 +1,48 @@
+# ===== Maven =====
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+
+# ===== Java =====
+*.class
+*.log
+
+# ===== IDEs =====
+
+## VSCode
+.vscode/
+*.code-workspace
+
+## IntelliJ IDEA (por si algún día lo usas)
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# ===== OS =====
+
+## Windows
+Thumbs.db
+Desktop.ini
+
+## macOS
+.DS_Store
+
+# ===== Maven Wrapper (opcional, si lo usas) =====
+.mvn/wrapper/maven-wrapper.jar
+
+# ===== Logs =====
+logs/
+*.log
+
+# ===== Test output =====
+surefire-reports/
+
+# ===== Backup files =====
+*~
+*.bak
