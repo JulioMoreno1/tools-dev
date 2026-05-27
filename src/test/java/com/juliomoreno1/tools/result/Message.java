@@ -1,6 +1,6 @@
 package com.juliomoreno1.tools.result;
 
-import com.juliomoreno1.tools.exceptions.ValidationException;
+import com.juliomoreno1.tools.exceptions.ToolException;
 
 /**
  * Representa un mensaje generado como resultado
@@ -14,11 +14,11 @@ public final class Message {
 
     public Message(MessageLevel level, String title, String body) {
         if (level == null) {
-            throw new ValidationException("El nivel del mensaje no puede ser vacío.");
+            throw new ToolException("El nivel del mensaje no puede ser vacío.");
         }
 
         if (title == null || title.trim().isEmpty()) {
-            throw new ValidationException("El titulo del mensaje no puede estar vacío.");
+            throw new ToolException("El titulo del mensaje no puede estar vacío.");
         }
 
         this.level = level;
