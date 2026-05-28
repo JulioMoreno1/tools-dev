@@ -5,6 +5,11 @@ import java.util.List;
 
 import com.juliomoreno1.tools.exceptions.ToolException;
 
+/**
+ * Representa el resultado de una operación, incluyendo:
+ * el estado de éxito, mensajes asociados, cantidad de elementos afectados
+ * y datos adicionales relacionados con la operación. 
+ */
 public final class OperationResult <T> {
 
     private final boolean success;

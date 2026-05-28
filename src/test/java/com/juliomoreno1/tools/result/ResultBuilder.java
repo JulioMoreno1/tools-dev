@@ -5,6 +5,14 @@ import java.util.List;
 
 import com.juliomoreno1.tools.exceptions.ToolException;
 
+/**
+ * Builder para crear instancias de OperationResult
+ * mediante una API fluida.
+ *
+ * Permite configurar el estado de la operación, mensajes,
+ * cantidad de elementos afectados y datos asociados antes
+ * de generar el resultado final.
+ */
 public class ResultBuilder <T> {
 
     private boolean success;
