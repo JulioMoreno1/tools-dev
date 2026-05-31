@@ -9,7 +9,7 @@ import org.junit.Test;
 import com.juliomoreno1.tools.result.Message;
 import com.juliomoreno1.tools.result.MessageLevel;
 
-public class IntegerValidarionTest {
+public class NumericValidarionTest {
 
     @Test
     public void donotHaveMessage() {
@@ -18,7 +18,7 @@ public class IntegerValidarionTest {
 
         Integer edadMinima = 18;
         Integer edadMaxima = 120;
-        IntegerValidation validator = IntegerValidation.of(campo, edad)
+        NumericValidation validator = NumericValidation.of(campo, edad)
                 .notNull()
                 .min(edadMinima)
                 .max(edadMaxima)
@@ -37,7 +37,7 @@ public class IntegerValidarionTest {
         Integer numeroDias = null;
 
         Integer maximoNumeroDias = 30;
-        IntegerValidation validator = IntegerValidation.of(campo, numeroDias)
+        NumericValidation validator = NumericValidation.of(campo, numeroDias)
                 .notNull()
                 .greaterThan(maximoNumeroDias)
                 .build();
@@ -53,7 +53,7 @@ public class IntegerValidarionTest {
         String campo = "Cantidad de padres";
         Integer cantidadDePadres = -2;
 
-        IntegerValidation validator = IntegerValidation.of(campo, cantidadDePadres)
+        NumericValidation validator = NumericValidation.of(campo, cantidadDePadres)
                 .notNull()
                 .greaterThan(-1)
                 .min(0)

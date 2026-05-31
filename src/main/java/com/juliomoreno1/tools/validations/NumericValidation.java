@@ -7,17 +7,17 @@ import com.juliomoreno1.tools.exceptions.ToolException;
 import com.juliomoreno1.tools.result.Message;
 import com.juliomoreno1.tools.result.MessageLevel;
 
-public class IntegerValidation {
+public class NumericValidation <T extends Number & Comparable<T>> {
 
     private final String fieldName;
-    private final Integer value;
+    private final T value;
 
-    private final Integer min;
-    private final Integer max;
+    private final T min;
+    private final T max;
     private final boolean notNull;
-    private final Integer greaterThan;
+    private final T greaterThan;
 
-    private IntegerValidation(Builder builder) {
+    private NumericValidation(Builder<T> builder) {
         this.fieldName = builder.fieldName;
         this.value = builder.value;
         this.min = builder.min;
@@ -60,47 +60,47 @@ public class IntegerValidation {
         return messages;
     }
 
-    public static class Builder {
+    public static class Builder<T extends Number & Comparable<T>> {
 
         private final String fieldName;
-        private final Integer value;
+        private final T value;
 
-        private Integer min;
-        private Integer max;
+        private T min;
+        private T max;
         private boolean notNull;
-        private Integer greaterThan;
+        private T greaterThan;
 
-        public Builder(String fieldName, Integer value) {
+        public Builder(String fieldName, T value) {
             this.fieldName = fieldName;
             this.value = value;
         }
 
-        public Builder notNull() {
+        public Builder<T> notNull() {
             this.notNull = true;
             return this;
         }
 
-        public Builder greaterThan(Integer value) {
+        public Builder<T> greaterThan(T value) {
             this.greaterThan = value;
             return this;
         }
 
-        public Builder min(Integer value) {
+        public Builder<T> min(T value) {
             this.min = value;
             return this;
         }
 
-        public Builder max(Integer value) {
+        public Builder<T> max(T value) {
             this.max = value;
             return this;
         }
 
-        public IntegerValidation build() {
-            return new IntegerValidation(this);
+        public NumericValidation<T> build() {
+            return new NumericValidation<>(this);
         }
     }
 
-    public static Builder of(String fieldName, Integer value) {
-        return new Builder(fieldName, value);
+    public static <T extends Number & Comparable<T>> Builder<T> of(String fieldName, T value) {
+        return new Builder<>(fieldName, value);
     }
 }
