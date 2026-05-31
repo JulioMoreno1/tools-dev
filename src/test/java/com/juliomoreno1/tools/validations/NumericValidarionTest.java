@@ -2,6 +2,7 @@ package com.juliomoreno1.tools.validations;
 
 import static org.junit.Assert.assertEquals;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.junit.Test;
@@ -9,16 +10,17 @@ import org.junit.Test;
 import com.juliomoreno1.tools.result.Message;
 import com.juliomoreno1.tools.result.MessageLevel;
 
+
 public class NumericValidarionTest {
 
     @Test
-    public void donotHaveMessage() {
+    public void donotHaveMessageLong() {
         String campo = "Edad";
-        Integer edad = 21;
+        Long edad = 21L;
 
-        Integer edadMinima = 18;
-        Integer edadMaxima = 120;
-        NumericValidation validator = NumericValidation.of(campo, edad)
+        Long edadMinima = 18L;
+        Long edadMaxima = 120L;
+        NumericValidation<Long> validator = NumericValidation.of(campo, edad)
                 .notNull()
                 .min(edadMinima)
                 .max(edadMaxima)
@@ -31,39 +33,37 @@ public class NumericValidarionTest {
     }
 
     @Test
-    public void fieldIsNull() {
+    public void validateSalaryBigDecimal() {
 
-        String campo = "Número de días";
-        Integer numeroDias = null;
+        String campo = "Salario";
+        BigDecimal salario = new BigDecimal("8000.00");
+        BigDecimal minimo = new BigDecimal("9451.20");
 
-        Integer maximoNumeroDias = 30;
-        NumericValidation validator = NumericValidation.of(campo, numeroDias)
-                .notNull()
-                .greaterThan(maximoNumeroDias)
+        NumericValidation<BigDecimal> validator = NumericValidation.of(campo, salario)
+                .min(minimo)
                 .build();
 
-        List<Message> messages = validator.validate();
+        List<Message> mensajes = validator.validate();
 
-        assertEquals("Número de días no puede ser vacío", messages.get(0).getBody());
+        assertEquals(MessageLevel.WARNING, mensajes.get(0).getLevel());
+        assertEquals("Salario debe ser mayor o igual que 9451.20", mensajes.get(0).getBody());
     }
 
     @Test
-    public void twoWarnings() {
+    public void validateTurnInteger() {
 
-        String campo = "Cantidad de padres";
-        Integer cantidadDePadres = -2;
+        String campo = "Número de turno";
+        Integer turno = 201;
 
-        NumericValidation validator = NumericValidation.of(campo, cantidadDePadres)
-                .notNull()
-                .greaterThan(-1)
-                .min(0)
-                .max(2)
-                .build();
+        Integer maximoDeTurnos = 200;
+
+        NumericValidation<Integer> validator = NumericValidation.of(campo, turno)
+        .max(maximoDeTurnos)
+        .build();
 
         List<Message> messages = validator.validate();
 
-        assertEquals(2, messages.size());
         assertEquals(MessageLevel.WARNING, messages.get(0).getLevel());
-        assertEquals(MessageLevel.WARNING, messages.get(1).getLevel());
+        assertEquals("Número de turno debe ser menor o igual que 200", messages.get(0).getBody());
     }
 }
