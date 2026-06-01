@@ -7,7 +7,7 @@ import com.juliomoreno1.tools.exceptions.ToolException;
 import com.juliomoreno1.tools.result.Message;
 import com.juliomoreno1.tools.result.MessageLevel;
 
-public class NumericValidation <T extends Number & Comparable<T>> {
+public class NumericValidation <T extends Number & Comparable<T>> implements Validator {
 
     private final String fieldName;
     private final T value;
@@ -26,6 +26,7 @@ public class NumericValidation <T extends Number & Comparable<T>> {
         this.greaterThan = builder.greaterThan;
     }
 
+    @Override
     public List<Message> validate() {
 
         List<Message> messages = new ArrayList<>();
