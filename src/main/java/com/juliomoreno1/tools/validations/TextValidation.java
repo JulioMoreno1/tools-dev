@@ -43,7 +43,7 @@ public class TextValidation implements Validator {
         }
 
         if (messages.isEmpty()) {
-            messages.add(new Message(MessageLevel.SUCCESS, title, fieldName + " cumple con todas la validaciones"));
+            messages.add(new Message(MessageLevel.SUCCESS, title, fieldName + " cumple con todas las validaciones"));
         }
         
         return messages;
@@ -75,6 +75,10 @@ public class TextValidation implements Validator {
         public TextValidation build() {
             return new TextValidation(this);
         }
+    }
+
+    public static  Builder of(String fieldName, String value) {
+        return new Builder(fieldName, value);
     }
 
 }
