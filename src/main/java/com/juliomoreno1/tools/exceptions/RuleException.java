@@ -7,11 +7,11 @@ package com.juliomoreno1.tools.exceptions;
  */
 public class RuleException extends BusinessException {
 
-    public RuleException(String message) {
-        super(message);
+    public RuleException(String code, String message) {
+        super(code, message);
     }
 
-    public RuleException(String message, Throwable cause) {
-        super(message, cause);
+    public RuleException(String code, String message, Throwable cause) {
+        super(code, message, cause);
     }
 }

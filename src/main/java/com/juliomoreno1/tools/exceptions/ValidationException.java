@@ -6,12 +6,28 @@ package com.juliomoreno1.tools.exceptions;
  */
 public class ValidationException extends ToolException{
 
-    public ValidationException(String message) {
+    private final String field;
+
+    private final String code;
+
+    public ValidationException(String field, String code, String message) {
         super(message);
+        this.field = field;
+        this.code = code;
     }
 
-    public ValidationException(String message, Throwable cause) {
+    public ValidationException(String field, String code, String message, Throwable cause) {
         super(message, cause);
+        this.field = field;
+        this.code = code;
+    }
+
+    public String getField() {
+        return field;
+    }
+
+    public String getCode() {
+        return code;
     }
 
 }
