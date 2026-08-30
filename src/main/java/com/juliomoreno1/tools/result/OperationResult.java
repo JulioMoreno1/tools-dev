@@ -1,5 +1,6 @@
 package com.juliomoreno1.tools.result;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -27,7 +28,7 @@ public final class OperationResult <T> {
         }
 
         this.success = success;
-        this.messages = Collections.unmodifiableList(messages);
+        this.messages = Collections.unmodifiableList(new ArrayList<>(messages));
         this.affectedCount = affectedCount;
         this.data = data;
     }
@@ -49,11 +50,21 @@ public final class OperationResult <T> {
     }
 
     public boolean hasErrors() {
-        return messages.stream().anyMatch(m -> m.getLevel() == MessageLevel.ERROR);
+        for (Message message : messages) {
+            if (message.getLevel() == MessageLevel.ERROR) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean hasWarnings() {
-        return messages.stream().anyMatch(m -> m.getLevel() == MessageLevel.WARNING);
+        for (Message message : messages) {
+            if (message.getLevel() == MessageLevel.WARNING) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
